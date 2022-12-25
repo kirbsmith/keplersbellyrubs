@@ -19,7 +19,7 @@
           <p class="self-center">Auto Belly Rubs: {{ autoScratcher }}</p>
         </div>
         <div class="flex flex-row">
-          <button :disabled="bellyCounter < (10+postAdd)" @click="latexGloves++; bellyCounter -= (10 + postAdd); postAdd = Math.floor(1.8*(postAdd+3)); autoLatex(); calledLatex = true" class="px-20 py-3 mx-3 bg-blue-200 rounded disabled:opacity-50">Latex Gloves: Cost {{ latexCost + postAdd }}</button>
+          <button :disabled="bellyCounter < (10+postAdd)" @click="latexGloves++; bellyCounter -= (10 + postAdd); postAdd = Math.floor(1.8*(postAdd+3)); autoLatex(); calledLatex = true" class="px-20 py-3 m-3 bg-blue-200 rounded disabled:opacity-50">Latex Gloves: Cost {{ latexCost + postAdd }}</button>
           <p class="self-center">Latex Gloves: {{ latexGloves }}</p>
         </div>
         <div class="flex flex-row">
