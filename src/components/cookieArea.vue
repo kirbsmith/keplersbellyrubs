@@ -9,6 +9,7 @@
           <p class="text-md text-center py-2">Latex Glove Rubs Per Second: {{ latexGloves }}</p>
           <p class="text-md text-center py-2">Nitrile Glove Rubs Per Second: {{ nitrileGloves * 2 }}</p>
           <p class="text-md text-center py-2">Work Glove Rubs Per Second: {{ workGloves * 5 }}</p>
+          <p class="text-md text-center py-2">Total Rubs Per Second: {{ (autoScratcher/2) + (latexGloves) + (nitrileGloves * 2) + (workGloves * 5) }}</p>
         </div>
       </div>
       <div class="flex flex-col pt-10 pl-8">
