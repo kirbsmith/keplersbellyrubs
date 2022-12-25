@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-row justify-evenly">
+    <div class="flex flex-row sm:flex-col justify-evenly">
       <div class="flex flex-col pt-6 pl-6">
         <h3 class="text-xl text-center">Click Kepler to collect belly rubs</h3>
         <img src="../assets/kepler.jpg" alt="" class="w-60 self-center py-6 rounded-full" @click="bellyCounter++"/>
