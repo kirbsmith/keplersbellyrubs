@@ -143,7 +143,7 @@
     created: function(){
       setInterval(() => {
         let luckyNumber = 5
-        let calcNumber = Math.floor(Math.random() * 5 + 1)
+        let calcNumber = Math.floor(Math.random() * 8 + 1)
         let bonusValue = Math.floor(Math.random() * 15 + 2)
         this.calcNumber = calcNumber
         this.bonusValue = bonusValue
