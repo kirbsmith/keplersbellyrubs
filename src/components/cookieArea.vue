@@ -3,14 +3,14 @@
       <div class="flex flex-col pt-6 px-4 md:pl-6">
         <h3 class="text-xl text-center">Click Kepler to collect belly rubs</h3>
         <img src="../assets/kepler.jpg" alt="" class="w-60 self-center py-6 rounded-full" @click="bellyCounter++"/>
-        <p class="text-lg text-center py-2">Belly Rubs: {{ bellyCounter }}</p>
+        <p class="text-lg text-center py-2">Belly Rubs: {{ bellyCounter > 1000000 ?bellyCounter.toExponential(4) : bellyCounter }}</p>
         <div class="flex flex-col border-solid border-2 border-black rounded-md mb-6">
-          <p class="text-md text-center py-2">Auto Belly Rubs Per Second: {{ autoScratcher }}</p>
-          <p class="text-md text-center py-2">Latex Glove Rubs Per Second: {{ latexGloves * 3 }}</p>
-          <p class="text-md text-center py-2">Nitrile Glove Rubs Per Second: {{ nitrileGloves * 5 }}</p>
-          <p class="text-md text-center py-2">Work Glove Rubs Per Second: {{ workGloves * 16 }}</p>
-          <p class="text-md text-center py-2">Welding Glove Rubs Per Second: {{ weldingGloves * 24 }}</p>
-          <p class="text-md text-center py-2">Total Rubs Per Second: {{ (autoScratcher) + (latexGloves*3) + (nitrileGloves * 5) + (workGloves * 16) + (weldingGloves * 24)}}</p>
+          <p class="text-md text-center py-2">Auto Belly Rubs Per Second: {{ autoScratcher > 10000 ? autoScratcher.toExponential(4) : autoScratcher }}</p>
+          <p class="text-md text-center py-2">Latex Glove Rubs Per Second: {{ (latexGloves * 3 > 10000) ? (latexGloves * 3).toExponential(4) : latexGloves * 3}}</p>
+          <p class="text-md text-center py-2">Nitrile Glove Rubs Per Second: {{ (nitrileGloves * 5 > 10000) ? (nitrileGloves * 5).toExponential(4) : nitrileGloves * 5}}</p>
+          <p class="text-md text-center py-2">Work Glove Rubs Per Second: {{ (workGloves * 16 > 10000) ? (workGloves * 16).toExponential(4) : workGloves * 16}}</p>
+          <p class="text-md text-center py-2">Welding Glove Rubs Per Second: {{ (weldingGloves * 24 > 10000) ? (weldingGloves * 24).toExponential(4) : weldingGloves * 24}}</p>
+          <p class="text-md text-center py-2">Total Rubs Per Second: {{ ((autoScratcher) + (latexGloves*3) + (nitrileGloves * 5) + (workGloves * 16) + (weldingGloves * 24) > 10000) ? ((autoScratcher) + (latexGloves*3) + (nitrileGloves * 5) + (workGloves * 16) + (weldingGloves * 24)).toExponential(4) : (autoScratcher) + (latexGloves*3) + (nitrileGloves * 5) + (workGloves * 16) + (weldingGloves * 24)}}</p>
         </div>
         <div v-if="luckyNumber == calcNumber" class="flex flex-col md:flex-row">
           <button :disabled="luckyClicked == true" @click="bellyCounter *= 95; luckyClicked = true" class="px-20 py-3 mx-3 bg-green-400 rounded disabled:opacity-50">Multiply your belly rubs by 95</button>
@@ -24,23 +24,23 @@
       <div class="flex flex-col pt-10 px-4">
         <h3 class="text-xl text-center pb-6" @click="autoScratch()">Increase your belly rubbing productivity</h3>
         <div class="flex flex-col md:flex-row">
-          <button :disabled="bellyCounter < (5 * autoAdd)" @click="autoScratcher++; bellyCounter -= (5 * autoAdd); autoAdd = Math.floor(1.2*(autoAdd+1.7)); autoScratch(); calledAuto = true" class="px-20 py-3 m-3 bg-blue-200 rounded disabled:opacity-50">Auto Belly Rub: Cost {{ autoScratcherCost * autoAdd }}</button>
+          <button :disabled="bellyCounter < (5 * autoAdd)" @click="autoScratcher++; bellyCounter -= (5 * autoAdd); autoAdd = Math.floor(1.2*(autoAdd+1.7)); autoScratch(); calledAuto = true" class="px-20 py-3 m-3 bg-blue-200 rounded disabled:opacity-50">Auto Belly Rub: Cost {{ (autoScratcherCost * autoAdd > 10000) ? (autoScratcherCost * autoAdd).toExponential(4) : autoScratcherCost * autoAdd}}</button>
           <p class="self-center">Auto Belly Rubs: {{ autoScratcher }}</p>
         </div>
         <div class="flex flex-col md:flex-row">
-          <button :disabled="bellyCounter < (10+postAdd)" @click="latexGloves++; bellyCounter -= (10 + postAdd); postAdd = Math.floor(1.6*(postAdd+3)); autoLatex(); calledLatex = true" class="px-20 py-3 m-3 bg-blue-200 rounded disabled:opacity-50">Latex Gloves: Cost {{ latexCost + postAdd }}</button>
+          <button :disabled="bellyCounter < (10+postAdd)" @click="latexGloves++; bellyCounter -= (10 + postAdd); postAdd = Math.floor(1.6*(postAdd+3)); autoLatex(); calledLatex = true" class="px-20 py-3 m-3 bg-blue-200 rounded disabled:opacity-50">Latex Gloves: Cost {{ (latexCost + postAdd > 10000) ? (latexCost + postAdd).toExponential(4) : latexCost + postAdd }}</button>
           <p class="self-center">Latex Gloves: {{ latexGloves }}</p>
         </div>
         <div class="flex flex-col md:flex-row">
-          <button :disabled="bellyCounter < (45+nitrileAdd)" @click="nitrileGloves++; bellyCounter -= (45 + nitrileAdd); nitrileAdd = Math.floor(2*(nitrileAdd+3)); autoNitrile(); calledNitrile = true" class="px-20 py-3 m-3 bg-blue-200 rounded disabled:opacity-50">Nitrile Gloves: Cost {{ nitrileCost + nitrileAdd }}</button>
+          <button :disabled="bellyCounter < (45+nitrileAdd)" @click="nitrileGloves++; bellyCounter -= (45 + nitrileAdd); nitrileAdd = Math.floor(2*(nitrileAdd+3)); autoNitrile(); calledNitrile = true" class="px-20 py-3 m-3 bg-blue-200 rounded disabled:opacity-50">Nitrile Gloves: Cost {{ (nitrileCost + nitrileAdd > 10000) ? (nitrileCost + nitrileAdd).toExponential(4) : nitrileCost + nitrileAdd}}</button>
           <p class="self-center">Nitrile Gloves: {{ nitrileGloves }}</p>
         </div>
         <div class="flex flex-col md:flex-row">
-          <button :disabled="bellyCounter < (95 + workAdd)" @click="workGloves++; bellyCounter -= (95 + workAdd); workAdd = Math.floor(2.2*(workAdd+5)); autoWork(); calledWork = true" class="px-20 py-3 m-3 bg-blue-200 rounded disabled:opacity-50">Work Gloves: Cost {{ workCost + workAdd }}</button>
+          <button :disabled="bellyCounter < (95 + workAdd)" @click="workGloves++; bellyCounter -= (95 + workAdd); workAdd = Math.floor(2.2*(workAdd+5)); autoWork(); calledWork = true" class="px-20 py-3 m-3 bg-blue-200 rounded disabled:opacity-50">Work Gloves: Cost {{ (workCost + workAdd > 10000) ? (workCost + workAdd).toExponential(4) : workCost + workAdd }}</button>
           <p class="self-center">Work Gloves: {{ workGloves }}</p>
         </div>
         <div class="flex flex-col md:flex-row">
-          <button :disabled="bellyCounter < (175 + weldingAdd)" @click="weldingGloves++; bellyCounter -= (175 + weldingAdd); weldingAdd = Math.floor(2.9*(weldingAdd+7)); autoWelding(); calledWelding = true" class="px-20 py-3 m-3 bg-blue-200 rounded disabled:opacity-50">Welding Gloves: Cost {{ weldingCost + weldingAdd }}</button>
+          <button :disabled="bellyCounter < (175 + weldingAdd)" @click="weldingGloves++; bellyCounter -= (175 + weldingAdd); weldingAdd = Math.floor(2.9*(weldingAdd+7)); autoWelding(); calledWelding = true" class="px-20 py-3 m-3 bg-blue-200 rounded disabled:opacity-50">Welding Gloves: Cost {{ (weldingCost + weldingAdd > 10000) ? (weldingCost + weldingAdd).toExponential(4) : weldingCost + weldingAdd }}</button>
           <p class="self-center">Welding Gloves: {{ weldingGloves }}</p>
         </div>
       </div>
