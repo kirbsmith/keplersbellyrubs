@@ -13,7 +13,7 @@
           <p class="text-md text-center py-2">Total Rubs Per Second: {{ ((autoScratcher) + (latexGloves*3) + (nitrileGloves * 5) + (workGloves * 16) + (weldingGloves * 24) > 10000) ? ((autoScratcher) + (latexGloves*3) + (nitrileGloves * 5) + (workGloves * 16) + (weldingGloves * 24)).toExponential(4) : (autoScratcher) + (latexGloves*3) + (nitrileGloves * 5) + (workGloves * 16) + (weldingGloves * 24)}}</p>
         </div>
         <div v-if="luckyNumber == calcNumber" class="flex flex-col md:flex-row">
-          <button :disabled="luckyClicked == true" @click="bellyCounter *= 95; luckyClicked = true" class="px-20 py-3 mx-3 bg-green-400 rounded disabled:opacity-50">Multiply your belly rubs by 95</button>
+          <button :disabled="luckyClicked == true" @click="bellyCounter *= 5; luckyClicked = true" class="px-20 py-3 mx-3 bg-green-400 rounded disabled:opacity-50">Multiply your belly rubs by 95</button>
           <p class="self-center">Click it before it disappears</p>
         </div>
         <div v-else class="flex flex-col md:flex-row">
